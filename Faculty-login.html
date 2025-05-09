@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Faculty Login - GUC Internship Portal</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at 30% 30%, #3c096c, #5a189a, #7b2cbf);
+      background-size: 300% 300%;
+      animation: animateBG 16s ease infinite;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+
+    @keyframes animateBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .login-container {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 50px 40px;
+      width: 100%;
+      max-width: 440px;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      animation: fadeIn 1s ease;
+      backdrop-filter: none;
+    }
+
+    @keyframes fadeIn {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .login-title {
+      font-size: 2.4rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 25px;
+      color: #f8f9fa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .login-title i {
+      font-size: 2.6rem;
+      color: #ffd700;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); text-shadow: 0 0 0 rgba(255, 215, 0, 0.5); }
+      50% { transform: scale(1.1); text-shadow: 0 0 15px rgba(255, 215, 0, 0.8); }
+      100% { transform: scale(1); text-shadow: 0 0 0 rgba(255, 215, 0, 0.5); }
+    }
+
+    .form-control {
+      border-radius: 14px;
+      padding: 14px 18px;
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.85);
+      border: none;
+      color: #212529;
+    }
+
+    .form-control:focus {
+      outline: none;
+      box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.4);
+    }
+
+    .btn-login {
+      border-radius: 14px;
+      padding: 14px;
+      font-weight: 700;
+      font-size: 1rem;
+      background: linear-gradient(to right, #fca311, #ffd700);
+      color: #000;
+      width: 100%;
+      border: none;
+      box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+      transition: 0.3s ease-in-out;
+    }
+
+    .btn-login:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 12px 28px rgba(255, 215, 0, 0.5);
+    }
+
+    .btn-login i {
+      margin-right: 6px;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 25px;
+      color: #ffe8ff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .back-link:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-title">
+      <i class="bi bi-person-badge-fill"></i>
+      Faculty Login
+    </div>
+
+    <form onsubmit="handleLogin(event)">
+      <input type="email" class="form-control mb-3" placeholder="Faculty Email" id="email" required />
+      <input type="password" class="form-control mb-4" placeholder="Password" id="password" required />
+      <button type="submit" class="btn btn-login">
+        <i class="bi bi-box-arrow-in-right"></i> Sign In
+      </button>
+    </form>
+
+    <a href="index.html" class="back-link">
+      <i class="bi bi-arrow-left-circle me-1"></i> Return to Homepage
+    </a>
+  </div>
+
+  <script>
+    function handleLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const pass = document.getElementById("password").value;
+
+      if (email && pass) {
+        alert("📘 Welcome, Faculty Member!");
+        window.location.href = "faculty-dashboard.html";
+      } else {
+        alert("Please complete all fields.");
+      }
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

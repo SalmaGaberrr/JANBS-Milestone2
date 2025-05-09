@@ -2,64 +2,99 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GUC Internship Portal</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet" />
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to bottom right, #f4f7ff, #ffffff);
       margin: 0;
+      background: linear-gradient(135deg, #ffffff, #6366f1, #9592d4);
+      background-size: 400% 400%;
+      animation: backgroundShift 18s ease infinite;
+      color: #fff;
     }
+
+    @keyframes backgroundShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
     .hero {
-      background: linear-gradient(to right, #1d3cff, #5a7bff);
-      color: white;
       text-align: center;
-      padding: 80px 20px 60px;
-      border-bottom-left-radius: 80px;
-      border-bottom-right-radius: 80px;
+      padding: 100px 20px 60px;
+      animation: fadeIn 1.5s ease;
     }
+
     .hero h1 {
-      font-size: 3.2rem;
-      font-weight: bold;
-    }
-    .hero p {
-      font-size: 1.25rem;
-      margin-top: 10px;
-    }
-    .role-card {
-      border: none;
-      border-radius: 20px;
-      padding: 30px;
-      text-align: center;
-      transition: all 0.3s ease;
-      background-color: white;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-    }
-    .role-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
-    }
-    .role-icon {
       font-size: 3.5rem;
-      color: #1d3cff;
-      margin-bottom: 15px;
+      font-weight: bold;
+      animation: glowText 2s ease-in-out infinite alternate;
     }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      color: #e0f2ff;
+    }
+
+    @keyframes glowText {
+      from { text-shadow: 0 0 8px #ffffff; }
+      to { text-shadow: 0 0 18px #7dd3fc; }
+    }
+
+    .role-card {
+      border-radius: 25px;
+      padding: 35px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.93);
+      color: #333;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      transition: transform 0.4s, box-shadow 0.4s;
+      animation: riseIn 1s ease;
+    }
+
+    .role-card:hover {
+      transform: scale(1.05) translateY(-5px);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+    }
+
+    .role-icon {
+      font-size: 4rem;
+      color: #4f46e5;
+      margin-bottom: 15px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
     .btn-login {
       margin-top: 15px;
       border-radius: 30px;
       padding: 10px 25px;
-      font-weight: 500;
-      background-color: #1d3cff;
+      font-weight: bold;
+      background-color:#38bdf8;
       color: white;
-      transition: background-color 0.3s ease;
+      border: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+
     .btn-login:hover {
-      background-color: #0024cc;
-      color: #fff;
+      transform: scale(1.1);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
     }
+
     .footer {
-      background-color: #1d3cff;
+      background-color: #4f46e5;
       color: white;
       text-align: center;
       padding: 20px;
@@ -67,9 +102,10 @@
       border-top-left-radius: 50px;
       border-top-right-radius: 50px;
     }
+
     .badge-pro {
-      background-color: #ffc107;
-      color: #000;
+      background-color: #a78bfa;
+      color: white;
       font-size: 0.75rem;
       font-weight: bold;
       animation: pulse 1.5s infinite;
@@ -77,16 +113,26 @@
       border-radius: 10px;
       padding: 3px 8px;
     }
+
     @keyframes pulse {
       0% { transform: scale(1); opacity: 1; }
       50% { transform: scale(1.2); opacity: 0.7; }
       100% { transform: scale(1); opacity: 1; }
     }
+
+    .form-check-label:hover {
+      color: #6366f1;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    @keyframes riseIn {
+      from { transform: translateY(60px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
   </style>
 </head>
 <body>
-
-  <!-- Hero Section -->
   <section class="hero">
     <div class="container">
       <h1>Welcome to the GUC Internship Portal</h1>
@@ -94,17 +140,13 @@
     </div>
   </section>
 
-  <!-- Role Selection -->
   <section class="container my-5">
     <div class="row g-4 justify-content-center">
       <!-- Student -->
       <div class="col-md-3">
         <div class="role-card">
           <i class="bi bi-mortarboard-fill role-icon"></i>
-          <h4>
-            Student
-            <span id="proBadge" class="badge-pro" style="display:none;">PRO</span>
-          </h4>
+          <h4>Student <span id="proBadge" class="badge-pro" style="display:none;">PRO</span></h4>
           <p>Apply for internships, enroll in training, and track your progress.</p>
 
           <div class="form-check mb-2 text-start">
@@ -125,39 +167,37 @@
           <i class="bi bi-buildings-fill role-icon"></i>
           <h4>Company</h4>
           <p>Post internship opportunities and evaluate student performance.</p>
-          <button class="btn btn-login" onclick="alert('Redirecting to company login...')">Company</button>
+          <button class="btn btn-login" onclick="handleRedirect('Company')">Company</button>
         </div>
       </div>
 
-      <!-- SCAD Office -->
+      <!-- SCAD -->
       <div class="col-md-3">
         <div class="role-card">
           <i class="bi bi-shield-lock-fill role-icon"></i>
           <h4>SCAD Office</h4>
           <p>Manage records, monitor applications, and coordinate assessments.</p>
-          <button class="btn btn-login" onclick="alert('Redirecting to SCAD login...')">SCAD Office</button>
+          <button class="btn btn-login" onclick="handleRedirect('SCAD')">SCAD Office</button>
         </div>
       </div>
 
-      <!-- Faculty Member -->
+      <!-- Faculty -->
       <div class="col-md-3">
         <div class="role-card">
           <i class="bi bi-person-badge-fill role-icon"></i>
           <h4>Faculty Member</h4>
           <p>Review student submissions and provide academic evaluations.</p>
-          <button class="btn btn-login" onclick="alert('Redirecting to faculty login...')">Faculty Member</button>
+          <button class="btn btn-login" onclick="handleRedirect('Faculty')">Faculty Member</button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="footer">
     <p>&copy; 2025 German University in Cairo — Internship System</p>
     <small>Developed by the GUC IT Department</small>
   </footer>
 
-  <!-- Script -->
   <script>
     function toggleStudentMode() {
       const chk = document.getElementById('chkCompleted');
@@ -167,22 +207,68 @@
 
       if (chk.checked) {
         badge.style.display = 'inline-block';
-        btn.textContent = 'Login as Pro Student';
-        hidden.value = 'true';
+        btn.textContent = "Login as Pro Student";
+        hidden.value = "true";
       } else {
         badge.style.display = 'none';
-        btn.textContent = 'Login as Student';
-        hidden.value = 'false';
+        btn.textContent = "Login as Student";
+        hidden.value = "false";
       }
     }
 
+    function handleRedirect(role) {
+      const pages = {
+        Company: 'company-login.html',
+        SCAD: 'scad-login.html',
+        Faculty: 'faculty-login.html'
+      };
+
+      showToast(`Redirecting to ${role} login...`);
+
+      setTimeout(() => {
+        window.location.href = pages[role];
+      }, 1500);
+    }
+
     function loginStudent() {
-      const isPro = document.getElementById('hfProStudent').value === 'true';
-      alert(isPro ? 'Logging in as PRO Student...' : 'Logging in as Student...');
+      const btn = document.getElementById('btnStudent');
+      const isPro = document.getElementById('hfProStudent').value === "true";
+
+      btn.disabled = true;
+      btn.innerHTML = `<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Redirecting...`;
+      showToast(isPro ? "Redirecting to Pro Student login..." : "Redirecting to Student login...");
+
+      setTimeout(() => {
+        window.location.href = isPro ? "pro-student-login.html" : "student-login.html";
+      }, 1500);
+    }
+
+    function showToast(message) {
+      const toast = document.createElement('div');
+      toast.textContent = message;
+      toast.style.position = 'fixed';
+      toast.style.bottom = '30px';
+      toast.style.left = '50%';
+      toast.style.transform = 'translateX(-50%)';
+      toast.style.backgroundColor = '#38bdf8';
+      toast.style.color = '#000';
+      toast.style.padding = '12px 20px';
+      toast.style.borderRadius = '30px';
+      toast.style.boxShadow = '0 8px 16px rgba(0,0,0,0.2)';
+      toast.style.fontWeight = '500';
+      toast.style.zIndex = '9999';
+      toast.style.opacity = '0';
+      toast.style.transition = 'opacity 0.5s ease';
+
+      document.body.appendChild(toast);
+      setTimeout(() => { toast.style.opacity = '1'; }, 100);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => document.body.removeChild(toast), 500);
+      }, 2000);
     }
   </script>
 
-  <!-- Bootstrap Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
